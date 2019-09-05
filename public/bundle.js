@@ -271,7 +271,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (32:0) {:else}
+    // (49:2) {:else}
     function create_else_block(ctx) {
     	var p, t_1, button;
 
@@ -282,9 +282,9 @@ var app = (function () {
     			t_1 = space();
     			button = element("button");
     			button.textContent = "Play Again...";
-    			add_location(p, file, 32, 1, 836);
+    			add_location(p, file, 49, 3, 1134);
     			attr(button, "type", "submit");
-    			add_location(button, file, 33, 1, 855);
+    			add_location(button, file, 50, 3, 1155);
     		},
 
     		m: function mount(target, anchor) {
@@ -305,7 +305,7 @@ var app = (function () {
     	};
     }
 
-    // (28:0) {#if !solved }
+    // (44:2) {#if !solved }
     function create_if_block(ctx) {
     	var each_1_anchor;
 
@@ -367,7 +367,7 @@ var app = (function () {
     	};
     }
 
-    // (29:1) {#each bugs as bug, i}
+    // (45:3) {#each bugs as bug, i}
     function create_each_block(ctx) {
     	var input, dispose;
 
@@ -383,7 +383,7 @@ var app = (function () {
     		c: function create() {
     			input = element("input");
     			attr(input, "type", "checkbox");
-    			add_location(input, file, 29, 2, 744);
+    			add_location(input, file, 45, 4, 1035);
 
     			dispose = [
     				listen(input, "change", input_change_handler),
@@ -413,7 +413,7 @@ var app = (function () {
     }
 
     function create_fragment(ctx) {
-    	var div, p0, t1, p1, t2, t3, t4, t5, t6, button0, t8, button1, dispose;
+    	var div1, p0, t1, p1, t2, t3, t4, t5, div0, t6, button0, t8, button1, dispose;
 
     	function select_block_type(changed, ctx) {
     		if (!ctx.solved) return create_if_block;
@@ -425,7 +425,7 @@ var app = (function () {
 
     	return {
     		c: function create() {
-    			div = element("div");
+    			div1 = element("div");
     			p0 = element("p");
     			p0.textContent = "Try to debug this...";
     			t1 = space();
@@ -434,6 +434,7 @@ var app = (function () {
     			t3 = text(ctx.chance);
     			t4 = text(" chance to debug this (to undrstand why - see the code...)");
     			t5 = space();
+    			div0 = element("div");
     			if_block.c();
     			t6 = space();
     			button0 = element("button");
@@ -441,11 +442,14 @@ var app = (function () {
     			t8 = space();
     			button1 = element("button");
     			button1.textContent = "-";
-    			add_location(p0, file, 25, 0, 583);
-    			add_location(p1, file, 26, 0, 611);
-    			add_location(button0, file, 35, 0, 906);
-    			add_location(button1, file, 36, 0, 945);
-    			add_location(div, file, 24, 0, 577);
+    			add_location(p0, file, 40, 1, 837);
+    			add_location(p1, file, 41, 1, 866);
+    			attr(div0, "class", "bugs-container svelte-12rmfqw");
+    			add_location(div0, file, 42, 1, 959);
+    			add_location(button0, file, 53, 2, 1218);
+    			add_location(button1, file, 54, 2, 1259);
+    			attr(div1, "class", "container svelte-12rmfqw");
+    			add_location(div1, file, 39, 0, 811);
 
     			dispose = [
     				listen(button0, "click", ctx.addBug),
@@ -458,19 +462,20 @@ var app = (function () {
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, div, anchor);
-    			append(div, p0);
-    			append(div, t1);
-    			append(div, p1);
+    			insert(target, div1, anchor);
+    			append(div1, p0);
+    			append(div1, t1);
+    			append(div1, p1);
     			append(p1, t2);
     			append(p1, t3);
     			append(p1, t4);
-    			append(div, t5);
-    			if_block.m(div, null);
-    			append(div, t6);
-    			append(div, button0);
-    			append(div, t8);
-    			append(div, button1);
+    			append(div1, t5);
+    			append(div1, div0);
+    			if_block.m(div0, null);
+    			append(div1, t6);
+    			append(div1, button0);
+    			append(div1, t8);
+    			append(div1, button1);
     		},
 
     		p: function update(changed, ctx) {
@@ -485,7 +490,7 @@ var app = (function () {
     				if_block = current_block_type(ctx);
     				if (if_block) {
     					if_block.c();
-    					if_block.m(div, t6);
+    					if_block.m(div0, null);
     				}
     			}
     		},
@@ -495,7 +500,7 @@ var app = (function () {
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(div);
+    				detach(div1);
     			}
 
     			if_block.d();

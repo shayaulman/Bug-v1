@@ -1,8 +1,12 @@
 {
   "version": 3,
   "file": "bundle.css",
-  "sources": [],
-  "sourcesContent": [],
+  "sources": [
+    "../src/App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n\tlet bugs = [false, true, false, false, true];\n\tlet solved = false;\n\t$: chance = [...Array(bugs.length).keys()].slice(1).reduce((a,b) => a*b);\n\n\n\tconst debug = (index) => {\n\t\tif (bugs[index] === true) return;\n\t\tbugs = bugs.map((bug, i) => bug === true ? true : Math.random() > 0.5 && i !== index);\n\t\tsolved = !bugs.includes(true);\n\t}\n\tconst addBug = () => {\n\t\tbugs = [...bugs, true];\n\t}\n\n\tconst deleteBug = () => {\n\t\tif (bugs.length == 2 ) {\n\t\t\talert(\"Minimum\");\n\t\t\treturn\t\n\t\t}\n\t\tbugs = bugs.filter((bug, i, t) => i !== t.length -1);\n\t\tconsole.log(bugs)\n\t} \n</script>\n\n<style>\n\t.container {\n\n\t\tdisplay: flex;\n\t\tjustify-content: center;\n\t\talign-items: center;\n\t\tbox-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);\n\t}\n\n\t.bugs-container {\n\t\twidth: 50%;\n\t\tmax-width: 500px;\n\t}\n</style>\n<div  class=\"container\">\n\t<p>Try to debug this...</p>\n\t<p>You have a  1 / { chance } chance to debug this (to undrstand why - see the code...)</p>\n\t<div class=\"bugs-container\">\n\t\t{#if !solved }\n\t\t\t{#each bugs as bug, i}\n\t\t\t\t<input type=\"checkbox\" on:change={ () => debug(i) } bind:checked={ bug }>\n\t\t\t{/each}\n\n\t\t{:else}\n\t\t\t<p>'Hooray!!'</p>\n\t\t\t<button type=\"submit\">Play Again...</button>\n\t\t{/if}\n\t</div>\n\t\t<button on:click={ addBug }>+</button>\n\t\t<button on:click={ deleteBug }>-</button>\n</div>\n"
+  ],
   "names": [],
-  "mappings": ""
+  "mappings": "AA0BC,UAAU,eAAC,CAAC,AAEX,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACnB,UAAU,CAAE,CAAC,CAAC,IAAI,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,AACvE,CAAC,AAED,eAAe,eAAC,CAAC,AAChB,KAAK,CAAE,GAAG,CACV,SAAS,CAAE,KAAK,AACjB,CAAC"
 }
