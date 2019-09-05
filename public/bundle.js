@@ -1,2 +1,571 @@
-var app=function(){"use strict";function t(){}function n(t){return t()}function e(){return Object.create(null)}function r(t){t.forEach(n)}function o(t){return"function"==typeof t}function c(t,n){return t!=t?n==n:t!==n||t&&"object"==typeof t||"function"==typeof t}function u(t,n){t.appendChild(n)}function a(t,n,e){t.insertBefore(n,e||null)}function i(t){t.parentNode.removeChild(t)}function d(t){return document.createElement(t)}function f(t){return document.createTextNode(t)}function l(){return f(" ")}function s(t,n,e,r){return t.addEventListener(n,e,r),()=>t.removeEventListener(n,e,r)}let h;function g(t){h=t}const p=[],$=[],m=[],b=[],v=Promise.resolve();let y=!1;function _(t){m.push(t)}function x(){const t=new Set;do{for(;p.length;){const t=p.shift();g(t),k(t.$$)}for(;$.length;)$.pop()();for(let n=0;n<m.length;n+=1){const e=m[n];t.has(e)||(e(),t.add(e))}m.length=0}while(p.length);for(;b.length;)b.pop()();y=!1}function k(t){t.fragment&&(t.update(t.dirty),r(t.before_update),t.fragment.p(t.dirty,t.ctx),t.dirty=null,t.after_update.forEach(_))}const w=new Set;function E(t,n){t.$$.dirty||(p.push(t),y||(y=!0,v.then(x)),t.$$.dirty=e()),t.$$.dirty[n]=!0}function C(c,u,a,i,d,f){const l=h;g(c);const s=u.props||{},p=c.$$={fragment:null,ctx:null,props:f,update:t,not_equal:d,bound:e(),on_mount:[],on_destroy:[],before_update:[],after_update:[],context:new Map(l?l.$$.context:[]),callbacks:e(),dirty:null};let $=!1;var m,b,v;p.ctx=a?a(c,s,(t,n)=>{p.ctx&&d(p.ctx[t],p.ctx[t]=n)&&(p.bound[t]&&p.bound[t](n),$&&E(c,t))}):s,p.update(),$=!0,r(p.before_update),p.fragment=i(p.ctx),u.target&&(u.hydrate?p.fragment.l((v=u.target,Array.from(v.childNodes))):p.fragment.c(),u.intro&&((m=c.$$.fragment)&&m.i&&(w.delete(m),m.i(b))),function(t,e,c){const{fragment:u,on_mount:a,on_destroy:i,after_update:d}=t.$$;u.m(e,c),_(()=>{const e=a.map(n).filter(o);i?i.push(...e):r(e),t.$$.on_mount=[]}),d.forEach(_)}(c,u.target,u.anchor),x()),g(l)}class A{$destroy(){var n,e;e=1,(n=this).$$.fragment&&(r(n.$$.on_destroy),n.$$.fragment.d(e),n.$$.on_destroy=n.$$.fragment=null,n.$$.ctx={}),this.$destroy=t}$on(t,n){const e=this.$$.callbacks[t]||(this.$$.callbacks[t]=[]);return e.push(n),()=>{const t=e.indexOf(n);-1!==t&&e.splice(t,1)}}$set(){}}function N(t,n,e){const r=Object.create(t);return r.bug=n[e],r.each_value=n,r.i=e,r}function j(n){var e;return{c(){(e=d("p")).textContent="'Hooray!!'"},m(t,n){a(t,e,n)},p:t,d(t){t&&i(e)}}}function B(t){for(var n,e=t.bugs,r=[],o=0;o<e.length;o+=1)r[o]=O(N(t,e,o));return{c(){for(var t=0;t<r.length;t+=1)r[t].c();n=f("")},m(t,e){for(var o=0;o<r.length;o+=1)r[o].m(t,e);a(t,n,e)},p(t,o){if(t.bugs){e=o.bugs;for(var c=0;c<e.length;c+=1){const u=N(o,e,c);r[c]?r[c].p(t,u):(r[c]=O(u),r[c].c(),r[c].m(n.parentNode,n))}for(;c<r.length;c+=1)r[c].d(1);r.length=e.length}},d(t){!function(t,n){for(let e=0;e<t.length;e+=1)t[e]&&t[e].d(n)}(r,t),t&&i(n)}}}function O(t){var n,e;function o(){t.input_change_handler.call(n,t)}function c(){return t.change_handler(t)}return{c(){var t,r,u;n=d("input"),t=n,r="type",null==(u="checkbox")?t.removeAttribute(r):t.setAttribute(r,u),e=[s(n,"change",o),s(n,"change",c)]},m(e,r){a(e,n,r),n.checked=t.bug},p(e,r){t=r,e.bugs&&(n.checked=t.bug)},d(t){t&&i(n),r(e)}}}function L(n){var e,r,o,c,h,g,p,$,m,b,v;function y(t,n){return n.solved?j:B}var _=y(0,n),x=_(n);return{c(){e=d("div"),(r=d("p")).textContent="Try to debug this...",o=l(),c=d("p"),h=f("You have a  1 / "),g=f(n.chance),p=f(" chance to debug this (to undrstand why - see the code...)"),$=l(),x.c(),m=l(),(b=d("button")).textContent="+",v=s(b,"click",n.addBug)},m(t,n){a(t,e,n),u(e,r),u(e,o),u(e,c),u(c,h),u(c,g),u(c,p),u(e,$),x.m(e,null),u(e,m),u(e,b)},p(t,n){_===(_=y(0,n))&&x?x.p(t,n):(x.d(1),(x=_(n))&&(x.c(),x.m(e,m)))},i:t,o:t,d(t){t&&i(e),x.d(),v()}}}function M(t,n,e){let r=[!1,!0,!1,!1,!0],o=!1;const c=t=>{!0!==r[t]&&(e("bugs",r=r.map((n,e)=>!0===n||Math.random()>.5&&e!==t)),e("solved",o=!r.includes(!0)))};let u=[...Array(r.length).keys()].slice(1).reduce((t,n)=>t*n);return{bugs:r,solved:o,debug:c,chance:u,addBug:()=>{let t=[...r].push(!0);e("bugs",r=t)},input_change_handler:function({bug:t,each_value:n,i:o}){n[o]=this.checked,e("bugs",r)},change_handler:function({i:t}){return c(t)}}}return new class extends A{constructor(t){super(),C(this,t,M,L,c,[])}}({target:document.body})}();
+
+(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');
+var app = (function () {
+    'use strict';
+
+    function noop() { }
+    function add_location(element, file, line, column, char) {
+        element.__svelte_meta = {
+            loc: { file, line, column, char }
+        };
+    }
+    function run(fn) {
+        return fn();
+    }
+    function blank_object() {
+        return Object.create(null);
+    }
+    function run_all(fns) {
+        fns.forEach(run);
+    }
+    function is_function(thing) {
+        return typeof thing === 'function';
+    }
+    function safe_not_equal(a, b) {
+        return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    }
+
+    function append(target, node) {
+        target.appendChild(node);
+    }
+    function insert(target, node, anchor) {
+        target.insertBefore(node, anchor || null);
+    }
+    function detach(node) {
+        node.parentNode.removeChild(node);
+    }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
+    }
+    function element(name) {
+        return document.createElement(name);
+    }
+    function text(data) {
+        return document.createTextNode(data);
+    }
+    function space() {
+        return text(' ');
+    }
+    function empty() {
+        return text('');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function attr(node, attribute, value) {
+        if (value == null)
+            node.removeAttribute(attribute);
+        else
+            node.setAttribute(attribute, value);
+    }
+    function children(element) {
+        return Array.from(element.childNodes);
+    }
+    function set_data(text, data) {
+        data = '' + data;
+        if (text.data !== data)
+            text.data = data;
+    }
+
+    let current_component;
+    function set_current_component(component) {
+        current_component = component;
+    }
+
+    const dirty_components = [];
+    const binding_callbacks = [];
+    const render_callbacks = [];
+    const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
+    function schedule_update() {
+        if (!update_scheduled) {
+            update_scheduled = true;
+            resolved_promise.then(flush);
+        }
+    }
+    function add_render_callback(fn) {
+        render_callbacks.push(fn);
+    }
+    function flush() {
+        const seen_callbacks = new Set();
+        do {
+            // first, call beforeUpdate functions
+            // and update components
+            while (dirty_components.length) {
+                const component = dirty_components.shift();
+                set_current_component(component);
+                update(component.$$);
+            }
+            while (binding_callbacks.length)
+                binding_callbacks.pop()();
+            // then, once components are updated, call
+            // afterUpdate functions. This may cause
+            // subsequent updates...
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
+                if (!seen_callbacks.has(callback)) {
+                    callback();
+                    // ...so guard against infinite loops
+                    seen_callbacks.add(callback);
+                }
+            }
+            render_callbacks.length = 0;
+        } while (dirty_components.length);
+        while (flush_callbacks.length) {
+            flush_callbacks.pop()();
+        }
+        update_scheduled = false;
+    }
+    function update($$) {
+        if ($$.fragment) {
+            $$.update($$.dirty);
+            run_all($$.before_update);
+            $$.fragment.p($$.dirty, $$.ctx);
+            $$.dirty = null;
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+    const outroing = new Set();
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
+        }
+    }
+    function mount_component(component, target, anchor) {
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
+        fragment.m(target, anchor);
+        // onMount happens before the initial afterUpdate
+        add_render_callback(() => {
+            const new_on_destroy = on_mount.map(run).filter(is_function);
+            if (on_destroy) {
+                on_destroy.push(...new_on_destroy);
+            }
+            else {
+                // Edge case - component was destroyed immediately,
+                // most likely as a result of a binding initialising
+                run_all(new_on_destroy);
+            }
+            component.$$.on_mount = [];
+        });
+        after_update.forEach(add_render_callback);
+    }
+    function destroy_component(component, detaching) {
+        if (component.$$.fragment) {
+            run_all(component.$$.on_destroy);
+            component.$$.fragment.d(detaching);
+            // TODO null out other refs, including component.$$ (but need to
+            // preserve final state?)
+            component.$$.on_destroy = component.$$.fragment = null;
+            component.$$.ctx = {};
+        }
+    }
+    function make_dirty(component, key) {
+        if (!component.$$.dirty) {
+            dirty_components.push(component);
+            schedule_update();
+            component.$$.dirty = blank_object();
+        }
+        component.$$.dirty[key] = true;
+    }
+    function init(component, options, instance, create_fragment, not_equal, prop_names) {
+        const parent_component = current_component;
+        set_current_component(component);
+        const props = options.props || {};
+        const $$ = component.$$ = {
+            fragment: null,
+            ctx: null,
+            // state
+            props: prop_names,
+            update: noop,
+            not_equal,
+            bound: blank_object(),
+            // lifecycle
+            on_mount: [],
+            on_destroy: [],
+            before_update: [],
+            after_update: [],
+            context: new Map(parent_component ? parent_component.$$.context : []),
+            // everything else
+            callbacks: blank_object(),
+            dirty: null
+        };
+        let ready = false;
+        $$.ctx = instance
+            ? instance(component, props, (key, value) => {
+                if ($$.ctx && not_equal($$.ctx[key], $$.ctx[key] = value)) {
+                    if ($$.bound[key])
+                        $$.bound[key](value);
+                    if (ready)
+                        make_dirty(component, key);
+                }
+            })
+            : props;
+        $$.update();
+        ready = true;
+        run_all($$.before_update);
+        $$.fragment = create_fragment($$.ctx);
+        if (options.target) {
+            if (options.hydrate) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment.l(children(options.target));
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment.c();
+            }
+            if (options.intro)
+                transition_in(component.$$.fragment);
+            mount_component(component, options.target, options.anchor);
+            flush();
+        }
+        set_current_component(parent_component);
+    }
+    class SvelteComponent {
+        $destroy() {
+            destroy_component(this, 1);
+            this.$destroy = noop;
+        }
+        $on(type, callback) {
+            const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+            callbacks.push(callback);
+            return () => {
+                const index = callbacks.indexOf(callback);
+                if (index !== -1)
+                    callbacks.splice(index, 1);
+            };
+        }
+        $set() {
+            // overridden by instance, if it has props
+        }
+    }
+    class SvelteComponentDev extends SvelteComponent {
+        constructor(options) {
+            if (!options || (!options.target && !options.$$inline)) {
+                throw new Error(`'target' is a required option`);
+            }
+            super();
+        }
+        $destroy() {
+            super.$destroy();
+            this.$destroy = () => {
+                console.warn(`Component was already destroyed`); // eslint-disable-line no-console
+            };
+        }
+    }
+
+    /* src/App.svelte generated by Svelte v3.9.2 */
+
+    const file = "src/App.svelte";
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.bug = list[i];
+    	child_ctx.each_value = list;
+    	child_ctx.i = i;
+    	return child_ctx;
+    }
+
+    // (32:0) {:else}
+    function create_else_block(ctx) {
+    	var p, t_1, button;
+
+    	return {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "'Hooray!!'";
+    			t_1 = space();
+    			button = element("button");
+    			button.textContent = "Play Again...";
+    			add_location(p, file, 32, 1, 836);
+    			attr(button, "type", "submit");
+    			add_location(button, file, 33, 1, 855);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, p, anchor);
+    			insert(target, t_1, anchor);
+    			insert(target, button, anchor);
+    		},
+
+    		p: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(p);
+    				detach(t_1);
+    				detach(button);
+    			}
+    		}
+    	};
+    }
+
+    // (28:0) {#if !solved }
+    function create_if_block(ctx) {
+    	var each_1_anchor;
+
+    	var each_value = ctx.bugs;
+
+    	var each_blocks = [];
+
+    	for (var i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	return {
+    		c: function create() {
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+
+    		m: function mount(target, anchor) {
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert(target, each_1_anchor, anchor);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.bugs) {
+    				each_value = ctx.bugs;
+
+    				for (var i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+
+    			if (detaching) {
+    				detach(each_1_anchor);
+    			}
+    		}
+    	};
+    }
+
+    // (29:1) {#each bugs as bug, i}
+    function create_each_block(ctx) {
+    	var input, dispose;
+
+    	function input_change_handler() {
+    		ctx.input_change_handler.call(input, ctx);
+    	}
+
+    	function change_handler() {
+    		return ctx.change_handler(ctx);
+    	}
+
+    	return {
+    		c: function create() {
+    			input = element("input");
+    			attr(input, "type", "checkbox");
+    			add_location(input, file, 29, 2, 744);
+
+    			dispose = [
+    				listen(input, "change", input_change_handler),
+    				listen(input, "change", change_handler)
+    			];
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, input, anchor);
+
+    			input.checked = ctx.bug;
+    		},
+
+    		p: function update(changed, new_ctx) {
+    			ctx = new_ctx;
+    			if (changed.bugs) input.checked = ctx.bug;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(input);
+    			}
+
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    function create_fragment(ctx) {
+    	var div, p0, t1, p1, t2, t3, t4, t5, t6, button0, t8, button1, dispose;
+
+    	function select_block_type(changed, ctx) {
+    		if (!ctx.solved) return create_if_block;
+    		return create_else_block;
+    	}
+
+    	var current_block_type = select_block_type(null, ctx);
+    	var if_block = current_block_type(ctx);
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			p0 = element("p");
+    			p0.textContent = "Try to debug this...";
+    			t1 = space();
+    			p1 = element("p");
+    			t2 = text("You have a  1 / ");
+    			t3 = text(ctx.chance);
+    			t4 = text(" chance to debug this (to undrstand why - see the code...)");
+    			t5 = space();
+    			if_block.c();
+    			t6 = space();
+    			button0 = element("button");
+    			button0.textContent = "+";
+    			t8 = space();
+    			button1 = element("button");
+    			button1.textContent = "-";
+    			add_location(p0, file, 25, 0, 583);
+    			add_location(p1, file, 26, 0, 611);
+    			add_location(button0, file, 35, 0, 906);
+    			add_location(button1, file, 36, 0, 945);
+    			add_location(div, file, 24, 0, 577);
+
+    			dispose = [
+    				listen(button0, "click", ctx.addBug),
+    				listen(button1, "click", ctx.deleteBug)
+    			];
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			append(div, p0);
+    			append(div, t1);
+    			append(div, p1);
+    			append(p1, t2);
+    			append(p1, t3);
+    			append(p1, t4);
+    			append(div, t5);
+    			if_block.m(div, null);
+    			append(div, t6);
+    			append(div, button0);
+    			append(div, t8);
+    			append(div, button1);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.chance) {
+    				set_data(t3, ctx.chance);
+    			}
+
+    			if (current_block_type === (current_block_type = select_block_type(changed, ctx)) && if_block) {
+    				if_block.p(changed, ctx);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(div, t6);
+    				}
+    			}
+    		},
+
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			if_block.d();
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    function instance($$self, $$props, $$invalidate) {
+    	let bugs = [false, true, false, false, true];
+    	let solved = false;
+
+
+    	const debug = (index) => {
+    		if (bugs[index] === true) return;
+    		$$invalidate('bugs', bugs = bugs.map((bug, i) => bug === true ? true : Math.random() > 0.5 && i !== index));
+    		$$invalidate('solved', solved = !bugs.includes(true));
+    	};
+    	const addBug = () => {
+    		$$invalidate('bugs', bugs = [...bugs, true]);
+    	};
+
+    	const deleteBug = () => {
+    		if (bugs.length == 2 ) {
+    			alert("Minimum");
+    			return	
+    		}
+    		$$invalidate('bugs', bugs = bugs.filter((bug, i, t) => i !== t.length -1));
+    		console.log(bugs);
+    	};
+
+    	function input_change_handler({ bug, each_value, i }) {
+    		each_value[i] = this.checked;
+    		$$invalidate('bugs', bugs);
+    	}
+
+    	function change_handler({ i }) {
+    		return debug(i);
+    	}
+
+    	let chance;
+
+    	$$self.$$.update = ($$dirty = { bugs: 1 }) => {
+    		if ($$dirty.bugs) { $$invalidate('chance', chance = [...Array(bugs.length).keys()].slice(1).reduce((a,b) => a*b)); }
+    	};
+
+    	return {
+    		bugs,
+    		solved,
+    		debug,
+    		addBug,
+    		deleteBug,
+    		chance,
+    		input_change_handler,
+    		change_handler
+    	};
+    }
+
+    class App extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance, create_fragment, safe_not_equal, []);
+    	}
+    }
+
+    var app = new App({
+    	target: document.body
+    });
+
+    return app;
+
+}());
 //# sourceMappingURL=bundle.js.map
