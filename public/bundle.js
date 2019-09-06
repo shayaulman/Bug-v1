@@ -271,26 +271,19 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (49:2) {:else}
+    // (34:0) {:else}
     function create_else_block(ctx) {
-    	var p, t_1, button;
+    	var p;
 
     	return {
     		c: function create() {
     			p = element("p");
     			p.textContent = "'Hooray!!'";
-    			t_1 = space();
-    			button = element("button");
-    			button.textContent = "Play Again...";
-    			add_location(p, file, 49, 3, 1134);
-    			attr(button, "type", "submit");
-    			add_location(button, file, 50, 3, 1155);
+    			add_location(p, file, 34, 1, 909);
     		},
 
     		m: function mount(target, anchor) {
     			insert(target, p, anchor);
-    			insert(target, t_1, anchor);
-    			insert(target, button, anchor);
     		},
 
     		p: noop,
@@ -298,14 +291,12 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) {
     				detach(p);
-    				detach(t_1);
-    				detach(button);
     			}
     		}
     	};
     }
 
-    // (44:2) {#if !solved }
+    // (27:0) {#if !solved }
     function create_if_block(ctx) {
     	var each_1_anchor;
 
@@ -367,9 +358,9 @@ var app = (function () {
     	};
     }
 
-    // (45:3) {#each bugs as bug, i}
+    // (28:1) {#each bugs as bug, i}
     function create_each_block(ctx) {
-    	var input, dispose;
+    	var label, input, t0, span, t1, dispose;
 
     	function input_change_handler() {
     		ctx.input_change_handler.call(input, ctx);
@@ -381,9 +372,18 @@ var app = (function () {
 
     	return {
     		c: function create() {
+    			label = element("label");
     			input = element("input");
+    			t0 = space();
+    			span = element("span");
+    			t1 = space();
     			attr(input, "type", "checkbox");
-    			add_location(input, file, 45, 4, 1035);
+    			attr(input, "class", "svelte-f6e9td");
+    			add_location(input, file, 29, 2, 770);
+    			attr(span, "class", "slider round svelte-f6e9td");
+    			add_location(span, file, 30, 2, 846);
+    			attr(label, "class", "switch svelte-f6e9td");
+    			add_location(label, file, 28, 1, 745);
 
     			dispose = [
     				listen(input, "change", input_change_handler),
@@ -392,9 +392,14 @@ var app = (function () {
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, input, anchor);
+    			insert(target, label, anchor);
+    			append(label, input);
 
     			input.checked = ctx.bug;
+
+    			append(label, t0);
+    			append(label, span);
+    			append(label, t1);
     		},
 
     		p: function update(changed, new_ctx) {
@@ -404,7 +409,7 @@ var app = (function () {
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(input);
+    				detach(label);
     			}
 
     			run_all(dispose);
@@ -413,7 +418,7 @@ var app = (function () {
     }
 
     function create_fragment(ctx) {
-    	var div1, p0, t1, p1, t2, t3, t4, t5, div0, t6, button0, t8, button1, dispose;
+    	var div, p0, t1, p1, t2, t3, t4, t5, t6, button0, t8, button1, dispose;
 
     	function select_block_type(changed, ctx) {
     		if (!ctx.solved) return create_if_block;
@@ -425,16 +430,15 @@ var app = (function () {
 
     	return {
     		c: function create() {
-    			div1 = element("div");
+    			div = element("div");
     			p0 = element("p");
     			p0.textContent = "Try to debug this...";
     			t1 = space();
     			p1 = element("p");
     			t2 = text("You have a  1 / ");
-    			t3 = text(ctx.chance);
+    			t3 = text(ctx.chanceToSolve);
     			t4 = text(" chance to debug this (to undrstand why - see the code...)");
     			t5 = space();
-    			div0 = element("div");
     			if_block.c();
     			t6 = space();
     			button0 = element("button");
@@ -442,14 +446,11 @@ var app = (function () {
     			t8 = space();
     			button1 = element("button");
     			button1.textContent = "-";
-    			add_location(p0, file, 40, 1, 837);
-    			add_location(p1, file, 41, 1, 866);
-    			attr(div0, "class", "bugs-container svelte-12rmfqw");
-    			add_location(div0, file, 42, 1, 959);
-    			add_location(button0, file, 53, 2, 1218);
-    			add_location(button1, file, 54, 2, 1259);
-    			attr(div1, "class", "container svelte-12rmfqw");
-    			add_location(div1, file, 39, 0, 811);
+    			add_location(p0, file, 24, 0, 578);
+    			add_location(p1, file, 25, 0, 606);
+    			add_location(button0, file, 36, 0, 933);
+    			add_location(button1, file, 37, 0, 972);
+    			add_location(div, file, 23, 0, 572);
 
     			dispose = [
     				listen(button0, "click", ctx.addBug),
@@ -462,25 +463,24 @@ var app = (function () {
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, div1, anchor);
-    			append(div1, p0);
-    			append(div1, t1);
-    			append(div1, p1);
+    			insert(target, div, anchor);
+    			append(div, p0);
+    			append(div, t1);
+    			append(div, p1);
     			append(p1, t2);
     			append(p1, t3);
     			append(p1, t4);
-    			append(div1, t5);
-    			append(div1, div0);
-    			if_block.m(div0, null);
-    			append(div1, t6);
-    			append(div1, button0);
-    			append(div1, t8);
-    			append(div1, button1);
+    			append(div, t5);
+    			if_block.m(div, null);
+    			append(div, t6);
+    			append(div, button0);
+    			append(div, t8);
+    			append(div, button1);
     		},
 
     		p: function update(changed, ctx) {
-    			if (changed.chance) {
-    				set_data(t3, ctx.chance);
+    			if (changed.chanceToSolve) {
+    				set_data(t3, ctx.chanceToSolve);
     			}
 
     			if (current_block_type === (current_block_type = select_block_type(changed, ctx)) && if_block) {
@@ -490,7 +490,7 @@ var app = (function () {
     				if_block = current_block_type(ctx);
     				if (if_block) {
     					if_block.c();
-    					if_block.m(div0, null);
+    					if_block.m(div, t6);
     				}
     			}
     		},
@@ -500,7 +500,7 @@ var app = (function () {
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(div1);
+    				detach(div);
     			}
 
     			if_block.d();
@@ -511,17 +511,15 @@ var app = (function () {
 
     function instance($$self, $$props, $$invalidate) {
     	let bugs = [false, true, false, false, true];
-    	let solved = false;
-
+    	let solved;
 
     	const debug = (index) => {
     		if (bugs[index] === true) return;
-    		$$invalidate('bugs', bugs = bugs.map((bug, i) => bug === true ? true : Math.random() > 0.5 && i !== index));
+    		$$invalidate('bugs', bugs = bugs.map((bug, i) => bug === true ? true : Math.random() > 0.50 && i !== index));
     		$$invalidate('solved', solved = !bugs.includes(true));
     	};
-    	const addBug = () => {
-    		$$invalidate('bugs', bugs = [...bugs, true]);
-    	};
+    	const addBug = () => { const $$result = bugs = [...bugs, true]; $$invalidate('bugs', bugs); return $$result; };
+    	
 
     	const deleteBug = () => {
     		if (bugs.length == 2 ) {
@@ -541,10 +539,10 @@ var app = (function () {
     		return debug(i);
     	}
 
-    	let chance;
+    	let chanceToSolve;
 
     	$$self.$$.update = ($$dirty = { bugs: 1 }) => {
-    		if ($$dirty.bugs) { $$invalidate('chance', chance = [...Array(bugs.length).keys()].slice(1).reduce((a,b) => a*b)); }
+    		if ($$dirty.bugs) { $$invalidate('chanceToSolve', chanceToSolve = [...Array(bugs.length).keys()].slice(1).reduce((a,b) => a*b)); }
     	};
 
     	return {
@@ -553,7 +551,7 @@ var app = (function () {
     		debug,
     		addBug,
     		deleteBug,
-    		chance,
+    		chanceToSolve,
     		input_change_handler,
     		change_handler
     	};
