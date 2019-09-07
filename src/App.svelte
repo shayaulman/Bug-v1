@@ -1,16 +1,14 @@
 <script>
 	const initBugs = [true, false, true, true, false];	
-	let bugs = [...initBugs];
-	let solved, clickCounter = 0;
+	let bugs = [...initBugs], solved, clickCounter = 0, bugChance = 0.25;
 
-	$: bugChance = 0.25;
 	const updateChance = () => bugChance = +document.querySelector('.chance').value / 100;
 
 	const debug = (index) => {
 		if (bugs[index] === true) return;
 		bugs = bugs.map((bug, i) => bug === false ? bugChance > Math.random() && index !== i : true);
 		solved = !bugs.includes(true);
-		clickCounter ++	
+		clickCounter++;	
 	}
 
 	const addBug = () => bugs = [...bugs, Math.random() > 0.5 ? true : false];
@@ -49,28 +47,8 @@
 			<button class="btn btn-success" on:click={ () => newGame() }>Play Again!</button>
 		{/if}
 		<p class="m-2"><span class="badge badge-danger">{ clickCounter }</span> Times Clicked...</p>
-<form name="contact" method="POST" data-netlify="true">
-  <p>
-    <label>Your Name: <input type="text" name="name" /></label>   
-  </p>
-  <p>
-    <label>Your Email: <input type="email" name="email" /></label>
-  </p>
-  <p>
-    <label>Your Role: <select name="role[]" multiple>
-      <option value="leader">Leader</option>
-      <option value="follower">Follower</option>
-    </select></label>
-  </p>
-  <p>
-    <label>Message: <textarea name="message"></textarea></label>
-  </p>
-  <p>
-    <button type="submit">Send</button>
-  </p>
-</form>
 	</div>
-
+	<p>See <a href="https://github.com/shayaulman/The-Big-Bug">the code</a></p>
 
 <style>
 .container {

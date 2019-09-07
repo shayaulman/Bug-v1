@@ -271,7 +271,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (47:2) {:else}
+    // (45:2) {:else}
     function create_else_block(ctx) {
     	var h1, t_1, button, dispose;
 
@@ -283,9 +283,9 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Play Again!";
     			attr(h1, "text-success", "");
-    			add_location(h1, file, 47, 3, 1839);
+    			add_location(h1, file, 45, 3, 1830);
     			attr(button, "class", "btn btn-success");
-    			add_location(button, file, 48, 3, 1874);
+    			add_location(button, file, 46, 3, 1865);
     			dispose = listen(button, "click", ctx.click_handler);
     		},
 
@@ -309,7 +309,7 @@ var app = (function () {
     	};
     }
 
-    // (31:2) {#if !solved }
+    // (29:2) {#if !solved }
     function create_if_block(ctx) {
     	var div0, button0, t1, button1, t3, div1, dispose;
 
@@ -336,13 +336,13 @@ var app = (function () {
     				each_blocks[i].c();
     			}
     			attr(button0, "class", "btn btn-outline-warning");
-    			add_location(button0, file, 32, 4, 1265);
+    			add_location(button0, file, 30, 4, 1256);
     			attr(button1, "class", "btn btn-outline-warning");
-    			add_location(button1, file, 33, 4, 1340);
+    			add_location(button1, file, 31, 4, 1331);
     			attr(div0, "class", "justify-content-center align-items-center m-2");
-    			add_location(div0, file, 31, 3, 1201);
+    			add_location(div0, file, 29, 3, 1192);
     			attr(div1, "class", "bugs bg-light flex-column justify-content-between");
-    			add_location(div1, file, 35, 2, 1426);
+    			add_location(div1, file, 33, 2, 1417);
 
     			dispose = [
     				listen(button0, "click", ctx.addBug),
@@ -400,7 +400,7 @@ var app = (function () {
     	};
     }
 
-    // (37:3) {#each bugs as bug, i}
+    // (35:3) {#each bugs as bug, i}
     function create_each_block(ctx) {
     	var div, label, input, t0, span, t1, h4, t2, t3_value = ctx.i+1 + "", t3, t4, dispose;
 
@@ -426,15 +426,15 @@ var app = (function () {
     			t4 = space();
     			attr(input, "type", "checkbox");
     			attr(input, "class", "svelte-l3ounh");
-    			add_location(input, file, 39, 6, 1611);
+    			add_location(input, file, 37, 6, 1602);
     			attr(span, "class", "slider round svelte-l3ounh");
-    			add_location(span, file, 40, 6, 1691);
+    			add_location(span, file, 38, 6, 1682);
     			attr(label, "class", "switch m-2 svelte-l3ounh");
-    			add_location(label, file, 38, 5, 1578);
+    			add_location(label, file, 36, 5, 1569);
     			attr(h4, "class", "text-secondary m-2");
-    			add_location(h4, file, 42, 5, 1745);
+    			add_location(h4, file, 40, 5, 1736);
     			attr(div, "class", "bug d-flex justify-content-between p-2 svelte-l3ounh");
-    			add_location(div, file, 37, 4, 1520);
+    			add_location(div, file, 35, 4, 1511);
 
     			dispose = [
     				listen(input, "change", input_change_handler),
@@ -474,7 +474,7 @@ var app = (function () {
     }
 
     function create_fragment(ctx) {
-    	var div, h3, t1, p0, t2, span0, input0, t3, t4, t5, p1, span1, t6, t7, t8, form, p2, label0, t9, input1, t10, p3, label1, t11, input2, t12, p4, label2, t13, select, option0, option1, t16, p5, label3, t17, textarea, t18, p6, button, dispose;
+    	var div, h3, t1, p0, t2, span0, input, t3, t4, t5, p1, span1, t6, t7, t8, p2, t9, a, dispose;
 
     	function select_block_type(changed, ctx) {
     		if (!ctx.solved) return create_if_block;
@@ -493,7 +493,7 @@ var app = (function () {
     			p0 = element("p");
     			t2 = text("On each \"debugging\" there is a ");
     			span0 = element("span");
-    			input0 = element("input");
+    			input = element("input");
     			t3 = text(" % chance that one of the debugged (green) sliders will get buggy...\"");
     			t4 = space();
     			if_block.c();
@@ -503,87 +503,34 @@ var app = (function () {
     			t6 = text(ctx.clickCounter);
     			t7 = text(" Times Clicked...");
     			t8 = space();
-    			form = element("form");
     			p2 = element("p");
-    			label0 = element("label");
-    			t9 = text("Your Name: ");
-    			input1 = element("input");
-    			t10 = space();
-    			p3 = element("p");
-    			label1 = element("label");
-    			t11 = text("Your Email: ");
-    			input2 = element("input");
-    			t12 = space();
-    			p4 = element("p");
-    			label2 = element("label");
-    			t13 = text("Your Role: ");
-    			select = element("select");
-    			option0 = element("option");
-    			option0.textContent = "Leader";
-    			option1 = element("option");
-    			option1.textContent = "Follower";
-    			t16 = space();
-    			p5 = element("p");
-    			label3 = element("label");
-    			t17 = text("Message: ");
-    			textarea = element("textarea");
-    			t18 = space();
-    			p6 = element("p");
-    			button = element("button");
-    			button.textContent = "Send";
+    			t9 = text("See ");
+    			a = element("a");
+    			a.textContent = "the code";
     			attr(h3, "class", "m-3");
     			set_style(h3, "color", "indigo");
-    			add_location(h3, file, 28, 2, 806);
-    			attr(input0, "class", "chance bg-light svelte-l3ounh");
-    			attr(input0, "type", "number");
-    			input0.value = "25";
-    			attr(input0, "min", "1");
-    			attr(input0, "max", "100");
-    			input0.autofocus = true;
-    			add_location(input0, file, 29, 118, 985);
+    			add_location(h3, file, 26, 2, 797);
+    			attr(input, "class", "chance bg-light svelte-l3ounh");
+    			attr(input, "type", "number");
+    			input.value = "25";
+    			attr(input, "min", "1");
+    			attr(input, "max", "100");
+    			input.autofocus = true;
+    			add_location(input, file, 27, 118, 976);
     			attr(span0, "class", "chance-input badge badge-light svelte-l3ounh");
-    			add_location(span0, file, 29, 73, 940);
+    			add_location(span0, file, 27, 73, 931);
     			attr(p0, "class", "alert alert-info text-center");
-    			add_location(p0, file, 29, 2, 869);
+    			add_location(p0, file, 27, 2, 860);
     			attr(span1, "class", "badge badge-danger");
-    			add_location(span1, file, 50, 17, 1981);
+    			add_location(span1, file, 48, 17, 1972);
     			attr(p1, "class", "m-2");
-    			add_location(p1, file, 50, 2, 1966);
-    			attr(input1, "type", "text");
-    			attr(input1, "name", "name");
-    			add_location(input1, file, 53, 22, 2143);
-    			add_location(label0, file, 53, 4, 2125);
-    			add_location(p2, file, 52, 2, 2117);
-    			attr(input2, "type", "email");
-    			attr(input2, "name", "email");
-    			add_location(input2, file, 56, 23, 2224);
-    			add_location(label1, file, 56, 4, 2205);
-    			add_location(p3, file, 55, 2, 2197);
-    			option0.__value = "leader";
-    			option0.value = option0.__value;
-    			add_location(option0, file, 60, 6, 2341);
-    			option1.__value = "follower";
-    			option1.value = option1.__value;
-    			add_location(option1, file, 61, 6, 2386);
-    			attr(select, "name", "role[]");
-    			select.multiple = true;
-    			add_location(select, file, 59, 22, 2303);
-    			add_location(label2, file, 59, 4, 2285);
-    			add_location(p4, file, 58, 2, 2277);
-    			attr(textarea, "name", "message");
-    			add_location(textarea, file, 65, 20, 2484);
-    			add_location(label3, file, 65, 4, 2468);
-    			add_location(p5, file, 64, 2, 2460);
-    			attr(button, "type", "submit");
-    			add_location(button, file, 68, 4, 2546);
-    			add_location(p6, file, 67, 2, 2538);
-    			attr(form, "name", "contact");
-    			attr(form, "method", "POST");
-    			attr(form, "data-netlify", "true");
-    			add_location(form, file, 51, 0, 2059);
+    			add_location(p1, file, 48, 2, 1957);
     			attr(div, "class", "container svelte-l3ounh");
-    			add_location(div, file, 27, 1, 780);
-    			dispose = listen(input0, "focusout", ctx.updateChance);
+    			add_location(div, file, 25, 1, 771);
+    			attr(a, "href", "https://github.com/shayaulman/The-Big-Bug");
+    			add_location(a, file, 50, 8, 2066);
+    			add_location(p2, file, 50, 1, 2059);
+    			dispose = listen(input, "focusout", ctx.updateChance);
     		},
 
     		l: function claim(nodes) {
@@ -597,7 +544,7 @@ var app = (function () {
     			append(div, p0);
     			append(p0, t2);
     			append(p0, span0);
-    			append(span0, input0);
+    			append(span0, input);
     			append(p0, t3);
     			append(div, t4);
     			if_block.m(div, null);
@@ -606,33 +553,11 @@ var app = (function () {
     			append(p1, span1);
     			append(span1, t6);
     			append(p1, t7);
-    			append(div, t8);
-    			append(div, form);
-    			append(form, p2);
-    			append(p2, label0);
-    			append(label0, t9);
-    			append(label0, input1);
-    			append(form, t10);
-    			append(form, p3);
-    			append(p3, label1);
-    			append(label1, t11);
-    			append(label1, input2);
-    			append(form, t12);
-    			append(form, p4);
-    			append(p4, label2);
-    			append(label2, t13);
-    			append(label2, select);
-    			append(select, option0);
-    			append(select, option1);
-    			append(form, t16);
-    			append(form, p5);
-    			append(p5, label3);
-    			append(label3, t17);
-    			append(label3, textarea);
-    			append(form, t18);
-    			append(form, p6);
-    			append(p6, button);
-    			input0.focus();
+    			insert(target, t8, anchor);
+    			insert(target, p2, anchor);
+    			append(p2, t9);
+    			append(p2, a);
+    			input.focus();
     		},
 
     		p: function update(changed, ctx) {
@@ -661,6 +586,12 @@ var app = (function () {
     			}
 
     			if_block.d();
+
+    			if (detaching) {
+    				detach(t8);
+    				detach(p2);
+    			}
+
     			dispose();
     		}
     	};
@@ -668,15 +599,15 @@ var app = (function () {
 
     function instance($$self, $$props, $$invalidate) {
     	const initBugs = [true, false, true, true, false];	
-    	let bugs = [...initBugs];
-    	let solved, clickCounter = 0;
+    	let bugs = [...initBugs], solved, clickCounter = 0, bugChance = 0.25;
+
     	const updateChance = () => { const $$result = bugChance = +document.querySelector('.chance').value / 100; return $$result; };
 
     	const debug = (index) => {
     		if (bugs[index] === true) return;
     		$$invalidate('bugs', bugs = bugs.map((bug, i) => bug === false ? bugChance > Math.random() && index !== i : true));
     		$$invalidate('solved', solved = !bugs.includes(true));
-    		clickCounter ++; $$invalidate('clickCounter', clickCounter);	
+    		clickCounter++; $$invalidate('clickCounter', clickCounter);	
     	};
 
     	const addBug = () => { const $$result = bugs = [...bugs, Math.random() > 0.5 ? true : false]; $$invalidate('bugs', bugs); return $$result; };
@@ -702,10 +633,6 @@ var app = (function () {
     	function click_handler() {
     		return newGame();
     	}
-
-    	let bugChance;
-
-    	bugChance = 0.25;
 
     	return {
     		bugs,
