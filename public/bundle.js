@@ -67,6 +67,9 @@ var app = (function () {
         if (text.data !== data)
             text.data = data;
     }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
+    }
 
     let current_component;
     function set_current_component(component) {
@@ -268,7 +271,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (47:1) {:else}
+    // (47:2) {:else}
     function create_else_block(ctx) {
     	var h1, t_1, button, dispose;
 
@@ -280,9 +283,9 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Play Again!";
     			attr(h1, "text-success", "");
-    			add_location(h1, file, 47, 2, 1831);
+    			add_location(h1, file, 47, 3, 1839);
     			attr(button, "class", "btn btn-success");
-    			add_location(button, file, 48, 2, 1865);
+    			add_location(button, file, 48, 3, 1874);
     			dispose = listen(button, "click", ctx.click_handler);
     		},
 
@@ -333,13 +336,13 @@ var app = (function () {
     				each_blocks[i].c();
     			}
     			attr(button0, "class", "btn btn-outline-warning");
-    			add_location(button0, file, 32, 4, 1259);
+    			add_location(button0, file, 32, 4, 1265);
     			attr(button1, "class", "btn btn-outline-warning");
-    			add_location(button1, file, 33, 4, 1334);
+    			add_location(button1, file, 33, 4, 1340);
     			attr(div0, "class", "justify-content-center align-items-center m-2");
-    			add_location(div0, file, 31, 3, 1195);
+    			add_location(div0, file, 31, 3, 1201);
     			attr(div1, "class", "bugs bg-light flex-column justify-content-between");
-    			add_location(div1, file, 35, 2, 1420);
+    			add_location(div1, file, 35, 2, 1426);
 
     			dispose = [
     				listen(button0, "click", ctx.addBug),
@@ -422,16 +425,16 @@ var app = (function () {
     			t3 = text(t3_value);
     			t4 = space();
     			attr(input, "type", "checkbox");
-    			attr(input, "class", "svelte-hkg4xv");
-    			add_location(input, file, 39, 6, 1605);
-    			attr(span, "class", "slider round svelte-hkg4xv");
-    			add_location(span, file, 40, 6, 1685);
-    			attr(label, "class", "switch m-2 svelte-hkg4xv");
-    			add_location(label, file, 38, 5, 1572);
+    			attr(input, "class", "svelte-l3ounh");
+    			add_location(input, file, 39, 6, 1611);
+    			attr(span, "class", "slider round svelte-l3ounh");
+    			add_location(span, file, 40, 6, 1691);
+    			attr(label, "class", "switch m-2 svelte-l3ounh");
+    			add_location(label, file, 38, 5, 1578);
     			attr(h4, "class", "text-secondary m-2");
-    			add_location(h4, file, 42, 5, 1739);
-    			attr(div, "class", "bug d-flex justify-content-between p-2 svelte-hkg4xv");
-    			add_location(div, file, 37, 4, 1514);
+    			add_location(h4, file, 42, 5, 1745);
+    			attr(div, "class", "bug d-flex justify-content-between p-2 svelte-l3ounh");
+    			add_location(div, file, 37, 4, 1520);
 
     			dispose = [
     				listen(input, "change", input_change_handler),
@@ -471,7 +474,7 @@ var app = (function () {
     }
 
     function create_fragment(ctx) {
-    	var div, h3, t1, p0, t2, span0, input, t3, t4, t5, p1, span1, t6, t7, dispose;
+    	var div, h3, t1, p0, t2, span0, input0, t3, t4, t5, p1, span1, t6, t7, t8, form, p2, label0, t9, textarea, t10, p3, label1, t11, input1, t12, p4, button, dispose;
 
     	function select_block_type(changed, ctx) {
     		if (!ctx.solved) return create_if_block;
@@ -485,12 +488,12 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			h3 = element("h3");
-    			h3.textContent = "Try to debug this...";
+    			h3.textContent = "Try to \"debug\"...";
     			t1 = space();
     			p0 = element("p");
     			t2 = text("On each \"debugging\" there is a ");
     			span0 = element("span");
-    			input = element("input");
+    			input0 = element("input");
     			t3 = text(" % chance that one of the debugged (green) sliders will get buggy...\"");
     			t4 = space();
     			if_block.c();
@@ -499,26 +502,58 @@ var app = (function () {
     			span1 = element("span");
     			t6 = text(ctx.clickCounter);
     			t7 = text(" Times Clicked...");
-    			attr(h3, "class", "text-primary m-3");
+    			t8 = space();
+    			form = element("form");
+    			p2 = element("p");
+    			label0 = element("label");
+    			t9 = text("Message: ");
+    			textarea = element("textarea");
+    			t10 = space();
+    			p3 = element("p");
+    			label1 = element("label");
+    			t11 = text("Your Email: ");
+    			input1 = element("input");
+    			t12 = space();
+    			p4 = element("p");
+    			button = element("button");
+    			button.textContent = "Send";
+    			attr(h3, "class", "m-3");
+    			set_style(h3, "color", "indigo");
     			add_location(h3, file, 28, 2, 806);
-    			attr(input, "class", "chance bg-light svelte-hkg4xv");
-    			attr(input, "type", "number");
-    			input.value = "25";
-    			attr(input, "min", "1");
-    			attr(input, "max", "100");
-    			input.autofocus = true;
-    			add_location(input, file, 29, 118, 979);
-    			attr(span0, "class", "chance-input badge badge-light");
-    			add_location(span0, file, 29, 73, 934);
+    			attr(input0, "class", "chance bg-light svelte-l3ounh");
+    			attr(input0, "type", "number");
+    			input0.value = "25";
+    			attr(input0, "min", "1");
+    			attr(input0, "max", "100");
+    			input0.autofocus = true;
+    			add_location(input0, file, 29, 118, 985);
+    			attr(span0, "class", "chance-input badge badge-light svelte-l3ounh");
+    			add_location(span0, file, 29, 73, 940);
     			attr(p0, "class", "alert alert-info text-center");
-    			add_location(p0, file, 29, 2, 863);
+    			add_location(p0, file, 29, 2, 869);
     			attr(span1, "class", "badge badge-danger");
-    			add_location(span1, file, 50, 16, 1970);
+    			add_location(span1, file, 50, 17, 1981);
     			attr(p1, "class", "m-2");
-    			add_location(p1, file, 50, 1, 1955);
-    			attr(div, "class", "container svelte-hkg4xv");
+    			add_location(p1, file, 50, 2, 1966);
+    			attr(textarea, "name", "message");
+    			add_location(textarea, file, 53, 20, 2144);
+    			add_location(label0, file, 53, 4, 2128);
+    			add_location(p2, file, 52, 3, 2120);
+    			attr(input1, "type", "email");
+    			attr(input1, "name", "email");
+    			add_location(input1, file, 56, 23, 2227);
+    			add_location(label1, file, 56, 4, 2208);
+    			add_location(p3, file, 55, 3, 2200);
+    			attr(button, "type", "submit");
+    			add_location(button, file, 59, 4, 2290);
+    			add_location(p4, file, 58, 3, 2282);
+    			attr(form, "name", "contact");
+    			attr(form, "method", "POST");
+    			attr(form, "data-netlify", "true");
+    			add_location(form, file, 51, 2, 2061);
+    			attr(div, "class", "container svelte-l3ounh");
     			add_location(div, file, 27, 1, 780);
-    			dispose = listen(input, "focusout", ctx.updateChance);
+    			dispose = listen(input0, "focusout", ctx.updateChance);
     		},
 
     		l: function claim(nodes) {
@@ -532,7 +567,7 @@ var app = (function () {
     			append(div, p0);
     			append(p0, t2);
     			append(p0, span0);
-    			append(span0, input);
+    			append(span0, input0);
     			append(p0, t3);
     			append(div, t4);
     			if_block.m(div, null);
@@ -541,7 +576,21 @@ var app = (function () {
     			append(p1, span1);
     			append(span1, t6);
     			append(p1, t7);
-    			input.focus();
+    			append(div, t8);
+    			append(div, form);
+    			append(form, p2);
+    			append(p2, label0);
+    			append(label0, t9);
+    			append(label0, textarea);
+    			append(form, t10);
+    			append(form, p3);
+    			append(p3, label1);
+    			append(label1, t11);
+    			append(label1, input1);
+    			append(form, t12);
+    			append(form, p4);
+    			append(p4, button);
+    			input0.focus();
     		},
 
     		p: function update(changed, ctx) {

@@ -26,7 +26,7 @@
 </script>
 
 	<div class="container">
-		<h3 class="text-primary m-3">Try to debug this...</h3>
+		<h3 class="m-3" style="color: indigo">Try to "debug"...</h3>
 		<p class="alert alert-info text-center">On each "debugging" there is a <span class="chance-input badge badge-light"><input class="chance bg-light" type="number" value="25" min="1" max="100" on:focusout={ updateChance } autofocus></span> % chance that one of the debugged (green) sliders will get buggy..."</p>		
 		{#if !solved }
 			<div class="justify-content-center align-items-center m-2">
@@ -44,11 +44,22 @@
 				</div>	
 			{/each}
 		</div>
-	{:else}
-		<h1 text-success>Hooray 🎉</h1>
-		<button class="btn btn-success" on:click={ () => newGame() }>Play Again!</button>
-	{/if}
-	<p class="m-2"><span class="badge badge-danger">{ clickCounter }</span> Times Clicked...</p>
+		{:else}
+			<h1 text-success>Hooray 🎉</h1>
+			<button class="btn btn-success" on:click={ () => newGame() }>Play Again!</button>
+		{/if}
+		<p class="m-2"><span class="badge badge-danger">{ clickCounter }</span> Times Clicked...</p>
+		<form name="contact" method="POST" data-netlify="true">
+			<p>
+				<label>Message: <textarea name="message"></textarea></label>
+			</p>
+			<p>
+				<label>Your Email: <input type="email" name="email" /></label>
+			</p>
+			<p>
+				<button type="submit">Send</button>
+			</p>
+		</form>
 	</div>
 
 
@@ -65,7 +76,7 @@
 	width: 420px
 }
 
-input {
+.chance {
 	width: 42px;
 	height: 18px;
 	outline: none;
