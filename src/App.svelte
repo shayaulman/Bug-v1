@@ -1,47 +1,55 @@
 <script>
-	let bugs = [false, true, false, false, true];
-	let solved;
+	const initBugs = [true, false, true, true, false];	
+	let bugs = [...initBugs];
+	let solved, clickCounter = 0;
 
-	$: chanceToSolve = [...Array(bugs.length).keys()].slice(1).reduce((a,b) => a*b);
+	$: bugChance = 0.25;
+	const updateChance = () => bugChance = +document.querySelector('.chance').value / 100;
 
 	const debug = (index) => {
 		if (bugs[index] === true) return;
-		bugs = bugs.map((bug, i) => bug === true ? true : Math.random() > 0.50 && i !== index);
+		bugs = bugs.map((bug, i) => bug === false ? bugChance > Math.random() && index !== i : true);
 		solved = !bugs.includes(true);
+		clickCounter ++	
 	}
 
-	const addBug = () => bugs = [...bugs, true];
+	const addBug = () => bugs = [...bugs, Math.random() > 0.5 ? true : false];
 
 	const deleteBug = () => {
 		return bugs.length == 2 ? alert("You Reached the Minimum...")	
 			: bugs = bugs.filter((bug, i, t) => i !== t.length -1);
 	}
+
+	const newGame = () => {
+		solved = !solved, clickCounter = 0, bugs = [...initBugs];
+	}
 </script>
+
 	<div class="container">
-		<p>Try to debug this...</p>
-		<p>You have a  <span class="badge -danger">1 / { chanceToSolve }</span> chance to "debug" this (to undrstand why - see the <a href="https://github.com/shayaulman/The-Big-Bug">code</a>)</p>
+		<h3 class="text-primary m-3">Try to debug this...</h3>
+		<p class="alert alert-info text-center">On each "debugging" there is a <span class="chance-input badge badge-light"><input class="chance bg-light" type="number" value="25" min="1" max="100" on:focusout={ updateChance } autofocus></span> % chance that one of the debugged (green) sliders will get buggy..."</p>		
 		{#if !solved }
+			<div class="justify-content-center align-items-center m-2">
+				<button class="btn btn-outline-warning" on:click={ addBug }>+</button>
+				<button class="btn btn-outline-warning" on:click={ deleteBug }>-</button>
+			</div>
+		<div class="bugs bg-light flex-column justify-content-between">
 			{#each bugs as bug, i}
-				<div class="bugs-container d-flex flex-row justify-content-between">
-					<label class="switch">
+				<div class="bug d-flex justify-content-between p-2">
+					<label class="switch m-2">
 						<input type="checkbox" on:change={ () => debug(i) } bind:checked={ bug }>
 						<span class="slider round"></span>
 					</label>
-					<p class="p-1">#Bug { i+1 }</p>
-				
+					<h4 class="text-secondary m-2">Bug #{ i+1 }</h4>
 				</div>	
 			{/each}
-		<div class="justify-content-center align-items-center">
-			<button class="btn btn-warning" on:click={ addBug }>+</button>
-			<button class="btn btn-warning" on:click={ deleteBug }>-</button>
 		</div>
 	{:else}
-		<h1>Hooray 🎉</h1>
-		<button >Play Again!</button>
+		<h1 text-success>Hooray 🎉</h1>
+		<button class="btn btn-success" on:click={ () => newGame() }>Play Again!</button>
 	{/if}
+	<p class="m-2"><span class="badge badge-danger">{ clickCounter }</span> Times Clicked...</p>
 	</div>
-
-
 
 
 <style>
@@ -52,6 +60,17 @@
 	flex-direction: column;
 }
 
+.bug {
+	border: 1px solid white;
+	width: 420px
+}
+
+input {
+	width: 42px;
+	height: 18px;
+	outline: none;
+	border: none;
+}
 
 /* source: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch */
 /* The switch - the box around the slider */
