@@ -49,7 +49,7 @@
 			<button class="btn btn-success" on:click={ () => newGame() }>Play Again!</button>
 		{/if}
 		<p class="m-2"><span class="badge badge-danger">{ clickCounter }</span> Times Clicked...</p>
-		<form name="contact" method="POST" data-netlify="true">
+		<form class="form" name="contact" method="POST" data-netlify="true">
 			<p>
 				<label>Message: <textarea name="message"></textarea></label>
 			</p>
