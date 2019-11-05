@@ -1,4 +1,4 @@
-*Psst  looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+*Psst Â looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---
 
@@ -17,6 +17,7 @@ cd svelte-app
 
 
 ## Get started
+[![Watch the getting started video](http://res.cloudinary.com/evanagee/image/upload/v1508649085/VueWP/youtube.jpg)](https://www.youtube.com/watch?v=QjQcbeqONrw)
 
 Install the dependencies...
 
